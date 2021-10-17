@@ -454,7 +454,7 @@ def choose_barcoding_kit(adapter_sets, verbosity, print_dest):
 
     # If that didn't work (i.e. it's a tie between forward and reverse), then choose based on the
     # sum of both start AND end scores.
-    elif forward_start_and_end > reverse_start_and_end:
+    elif forward_start_and_end >= reverse_start_and_end: #comment by mikeshelk: Initially there was ">", but because of rarely occuring errors "Porechop could not determine barcode orientation" I changed this to ">=".
         orientation = 'forward'
     elif reverse_start_and_end > forward_start_and_end:
         orientation = 'reverse'
