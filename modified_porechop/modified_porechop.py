@@ -1,17 +1,5 @@
 """
-Copyright 2017 Ryan Wick (rrwick@gmail.com)
-https://github.com/rrwick/Porechop
-
-This module contains the main script for Porechop. It is executed when a user runs `porechop`
-(after installation) or `porechop-runner.py` (directly from the source directory).
-
-This file is part of Porechop. Porechop is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by the Free Software Foundation,
-either version 3 of the License, or (at your option) any later version. Porechop is distributed in
-the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
-details. You should have received a copy of the GNU General Public License along with Porechop. If
-not, see <http://www.gnu.org/licenses/>.
+Modified_porechop. See https://github.com/shelkmike/Modified_porechop
 """
 
 import argparse
@@ -29,7 +17,7 @@ from .adapters import make_full_native_barcode_adapter,\
 from .nanopore_read import NanoporeRead
 from .version import __version__
 
-#a class which defines an adapter (or a barcode). In the original Porechop, this class is described in https://github.com/rrwick/Porechop/blob/master/porechop/adapters.py
+#a class which defines an adapter. In the original Porechop, this class is described in https://github.com/rrwick/Porechop/blob/master/porechop/adapters.py
 class Adapter(object):
 
     def __init__(self, name, start_sequence=None, end_sequence=None, both_ends_sequence=None):
@@ -144,7 +132,7 @@ def get_arguments():
                                  'a file and stderr if reads are printed to stdout')
     main_group.add_argument('-t', '--threads', type=int, default=default_threads,
                             help='Number of threads to use for adapter alignment')
-    main_group.add_argument('--adapters', help='Path to a FASTA file with adapters and/or barcodes. For details, see https://github.com/shelkmike/modified_porechop')
+    main_group.add_argument('--adapters', help='Path to a FASTA file with adapters. For details, see https://github.com/shelkmike/Modified_porechop')
 
     barcode_group = parser.add_argument_group('Barcode binning settings',
                                               'Control the binning of reads based on barcodes '
@@ -258,7 +246,7 @@ def get_arguments():
 
     return args
 
-#a function that creates a list of adapters and barcodes, which is structured identically to the list "ADAPTERS" in the original Porechop (https://github.com/rrwick/Porechop/blob/master/porechop/adapters.py). Just as in the original Porechop, I call barcodes "adapters" too.
+#a function that creates a list of adapters, which is structured identically to the list "ADAPTERS" in the original Porechop (https://github.com/rrwick/Porechop/blob/master/porechop/adapters.py).
 def load_adapters(s_path_to_the_file_with_adapters):
     ADAPTERS = []
     f_infile = open(s_path_to_the_file_with_adapters, "r")
